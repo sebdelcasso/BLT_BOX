@@ -25,16 +25,12 @@ No build, test, or lint tooling is currently configured.
 
 ## Architecture
 
-Three Python modules, each runnable as a standalone script via `if __name__ == '__main__'` blocks:
+Single entry point: **`box.py`**. Contains:
 
-- **`box.py`** — Main entry point. Combines all shapes into a grid layout. Contains:
-  - `draw_cross()`: renders cross-shaped PMMA elements
-  - `draw_side_rectangle()`: renders rectangular border elements (top/bottom/left/right)
-  - `draw_topbottom()`: renders the main rounded rectangular frame with side borders
-  - Exports `combined_shape.svg`
+- `draw_cross()`: renders cross-shaped PMMA elements
+- `draw_side_rectangle()`: renders rectangular border elements (top/bottom/left/right)
+- `draw_topbottom()`: renders the main rounded rectangular frame with side borders
 
-- **`main.py`** — Standalone demo of top/bottom rounded rectangles with side borders.
-
-- **`croix.py`** — Incomplete module for cross shape drawing (references an undefined `draw_side()` function).
+The `__main__` block assembles a combined layout (2 top/bottom frames + 4 crosses) and exports `combined_shape.svg`.
 
 All geometry is drawn using `matplotlib.patches` (FancyBboxPatch, Rectangle) and `matplotlib.path.Path`. Dimensions represent real-world measurements in millimeters; code comments are in French.
